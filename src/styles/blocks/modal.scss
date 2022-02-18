@@ -1,0 +1,65 @@
+.modal-edit-table {
+  position: relative;
+  height: fit-content;
+  margin: 40px;
+  padding: 30px;
+  border: 1px solid #6cf;
+  display: none;
+}
+
+.modal-title {
+  margin-bottom: 20px;
+  color: #039;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.input-title {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-input {
+  display: block;
+  width: 100%;
+  resize: none;
+  padding: 10px;
+  font-size: 15px;
+  color: #039;
+  border: 1px solid #669;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.modal-btn {
+  display: block;
+  width: 25%;
+  margin-top: 10px;
+  padding: 10px;
+  color: #039;
+  font-size: 15px;
+  background-color: #fff;
+  border: 1px solid #669;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
+  font-size: 30px;
+  color: #039;
+  opacity: 0.7;
+  cursor: pointer;
+}

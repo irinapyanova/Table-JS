@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="table-container">
+
         <table>
           <thead class="table-header">
             <tr>
@@ -36,23 +37,22 @@
             </tr>
           </thead>
           <tbody class="table-body">
-            <tr>
-              <td>1</td>
-              <td>Карандаш цветной</td>
-              <td>20,00</td>
-              <td class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium beatae itaque voluptate alias ullam veniam sint, odit laborum, sed doloremque, natus nulla esse. Harum repellat inventore delectus ratione. Nam, dolores.</td>
-              <td>20,00</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Линейка 20 см</td>
-              <td>30,00</td>
-              <td class="about">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero illum aut consectetur sint quidem recusandae aspernatur placeat, laudantium suscipit autem.</td>
-              <td>20,00</td>
-            </tr>
+
           </tbody>
         </table>
-        <div class="modal-edit-table"></div>
+
+        <div class="modal-edit-table">
+          <button class="close">×</button>
+          <h1 class="modal-title">Форма редактирования данных</h1>
+          <div class="input-container">
+            <span class="input-title"> Имя:<input type="text" name="fname" id="fname" class="modal-input"> </span>
+            <span class="input-title"> Фамилия:<input type="text" name="lname" id="lname" class="modal-input"> </span>
+            <span class="input-title"> Описание:<input type="text" name="about" id="about" class="modal-input"> </span>
+            <span class="input-title"> Цвет глаз:<input type="text" name="color" id="color" class="modal-input"> </span>
+            <button class="modal-btn">Редактировать</button>
+          </div>
+        </div>
+
     </div>
 
 </body>

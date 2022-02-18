@@ -1,6 +1,7 @@
 table {
   width: 50%;
   margin: 40px;
+  height: fit-content;
   text-align: center;
   table-layout: fixed;
   border-collapse: collapse;
@@ -24,6 +25,7 @@ td {
   color: #669;
   padding: 5px 20px;
   border-right: 1px dashed #6cf;
+  cursor: pointer;
 }
 
 .about {
@@ -31,4 +33,5 @@ td {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-height: 1.5;
 }
