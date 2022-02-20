@@ -16,24 +16,16 @@
         <table>
           <thead class="table-header">
             <tr>
-                <th>№ 
+                <th data-column="number" data-order="desc">№ 
                   <div class="btn-container">
-                    <button>Сортировка</button> 
+                    <button class="sort-btn">Сортировка</button> 
                     <button>Скрыть колонку</button>
                   </div>
                 </th>
-                <th>Имя 
-                  <button>Скрыть колонку</button>
-                </th>
-                <th>Фамилия 
-                  <button>Скрыть колонку</button>
-                </th>
-                <th>Описание 
-                  <button>Скрыть колонку</button>
-                </th>
-                <th>Цвет глаз 
-                  <button>Скрыть колонку</button>
-                </th>
+                <th data-column="firstName" data-order="desc">Имя</th>
+                <th data-column="lastName" data-order="desc">Фамилия</th>
+                <th data-column="about" data-order="desc">Описание</th>
+                <th data-column="eyeColor" data-order="desc">Цвет глаз</th>
             </tr>
           </thead>
           <tbody class="table-body">

@@ -1,21 +1,53 @@
 // Формирование данных таблицы
 
 const tableBody = document.querySelector('.table-body');
+const tableTh = document.querySelectorAll('th');
 let rowId;
 
+function sortData(res) {
+
+  const a = res[0].name.firstName;
+
+
+  tableTh.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const target = e.target;
+      const column = target.getAttribute('data-column');
+      const order = target.getAttribute('data-order');
+      
+      const allnames = res.name[column];
+      console.log(allnames);
+      if (order == 'desc') {
+        target.setAttribute('data-order', 'asc');
+        res = res.sort((a, b) => a[column] > b[column] ? 1 : -1)
+      } else {
+        target.setAttribute('data-order', 'desc');
+        res = res.sort((a, b) => a[column] < b[column] ? 1 : -1)
+      }
+      
+      renderItems(res);
+    })
+    
+  })
+
+  
+}
+
+
 const renderItems = (data) => {
+  tableBody.innerHTML = '';
+  
   data.forEach((item, i) => {
-    const {id, about, eyeColor, name} = item;
+    
+    const {about, eyeColor, name} = item;
     const tr = document.createElement('tr');
     tr.classList.add('row');
-    tr.setAttribute('id', `${id}`);
-
     tr.innerHTML = ` 
       <td>${i + 1}</td>
       <td>${name.firstName}</td>
       <td>${name.lastName}</td>
       <td class="about">${about}</td>
-      <td>${eyeColor}</td>
+      <td class="color">${eyeColor}</td>
     `;
 
     tableBody.append(tr);
@@ -33,12 +65,29 @@ const renderItems = (data) => {
       document.getElementById("color").value = textContent[4];
       showModal();
     })
+    
   });
-}    
-fetch('json/db.json')
+
+}
+
+
+ 
+
+function returnData () {
+  return fetch('json/db.json')
   .then(response => response.json())
-  .then(data => renderItems(data))
+  .then(data => {
+    const tableData = data;
+    return tableData;
+  })
   .catch(error => console.log(error));
+}
+
+returnData()
+.then(res => {
+  renderItems(res);
+  sortData(res);
+});
 
 // Модальное окно 
 const table = document.querySelector('table');
@@ -63,3 +112,4 @@ function editRow(){
   table.rows[rowId].cells[4].innerHTML = document.getElementById("color").value;
 }
 modalBtn.addEventListener('click', editRow);
+
