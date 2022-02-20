@@ -12,7 +12,7 @@ function sortData(res) {
   tableTh.forEach(item => {
     item.addEventListener('click', (e) => {
       const target = e.target;
-      const column = target.getAttribute('data-column');
+      const column = target.getAttribute('data-column') == 'asc' ? 'desc' : 'asc';
       const order = target.getAttribute('data-order');
       
         target.setAttribute('data-order', order);
@@ -21,8 +21,11 @@ function sortData(res) {
             return order == 'asc' ? 1 : -1;
           }
           if (a[column] >= b[column]) {
-            return 0;
+            
+            return order == 'asc' ? -1 : 0;
           }
+          
+          return 0;
         })
 
         console.log(res);
