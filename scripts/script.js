@@ -15,15 +15,17 @@ function sortData(res) {
       const column = target.getAttribute('data-column');
       const order = target.getAttribute('data-order');
       
-      const allnames = res.name[column];
-      console.log(allnames);
-      if (order == 'desc') {
-        target.setAttribute('data-order', 'asc');
-        res = res.sort((a, b) => a[column] > b[column] ? 1 : -1)
-      } else {
-        target.setAttribute('data-order', 'desc');
-        res = res.sort((a, b) => a[column] < b[column] ? 1 : -1)
-      }
+        target.setAttribute('data-order', order);
+        res = res.sort((a, b) => {
+          if (a[column] < b[column]) {
+            return order == 'asc' ? 1 : -1;
+          }
+          if (a[column] >= b[column]) {
+            return 0;
+          }
+        })
+
+        console.log(res);
       
       renderItems(res);
     })
