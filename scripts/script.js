@@ -4,6 +4,8 @@ const tableBody = document.querySelector('.table-body');
 const tableTh = document.querySelectorAll('th');
 let rowId;
 
+const checkbox = document.querySelectorAll('.table-checkbox');
+
 function sortData(res) {
   let column;
   let order;
@@ -48,10 +50,10 @@ const renderItems = (data) => {
     const tr = document.createElement('tr');
     tr.classList.add('row');
     tr.innerHTML = ` 
-      <td id="fname-head" >${name.firstName}</td>
-      <td id="lname-head" >${name.lastName}</td>
-      <td id="about-head" class="about">${about}</td>
-      <td id="color-head"  class="color" style="color: ${eyeColor}">${eyeColor}</td>
+      <td id="fname-checkbox" >${name.firstName}</td>
+      <td id="lname-checkbox" >${name.lastName}</td>
+      <td id="about-checkbox" class="about">${about}</td>
+      <td id="color-checkbox"  class="color" style="color: ${eyeColor}">${eyeColor}</td>
     `;
 
     tableBody.append(tr);
@@ -97,11 +99,11 @@ const modalBtn = document.querySelector('.modal-btn');
 const closeBtn = document.querySelector('.close');
 
 const showModal = () => {
-  modal.classList.add('show');
+  modal.classList.add('show', 'fade');
 }
 
 const hideModal = () => {
-  modal.classList.remove('show');
+  modal.classList.remove('show', 'fade');
 }
 
 closeBtn.addEventListener('click', hideModal);
@@ -114,19 +116,20 @@ function editRow(){
 }
 modalBtn.addEventListener('click', editRow);
 
-const toggleColumnBtn = document.querySelectorAll('.toggle');
+
 
 function hideColumn() {
-  
-  toggleColumnBtn.forEach(item => {
-    item.addEventListener('click', (e) => {
-      const parentTh = e.target.parentElement;
-      const parentThId = parentTh.getAttribute('id');
-      const selector = '#' + parentThId;
-      const cells = document.querySelectorAll(selector);
-      parentTh.classList.add('hide');
-      console.log(parentTh);
-      cells.forEach(item => item.classList.toggle('hide'));
+  checkbox.forEach(item => {
+    item.addEventListener('change', () => {
+      const targetId = item.getAttribute('id');
+      const columnSelector = '#' + targetId;
+      const cellsColumn = table.querySelectorAll(columnSelector);
+
+      if (item.checked) {
+        cellsColumn.forEach(cell => cell.classList.toggle('hide'));
+      } else {
+        cellsColumn.forEach(cell => cell.classList.toggle('hide'));
+      }
     })
   })
 }
