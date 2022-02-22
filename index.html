@@ -12,20 +12,14 @@
 </head>
 <body>
     <div class="table-container">
-
+      
         <table>
           <thead class="table-header">
             <tr>
-                <th data-column="number" data-order="desc">№ 
-                  <div class="btn-container">
-                    <button class="sort-btn">Сортировка</button> 
-                    <button>Скрыть колонку</button>
-                  </div>
-                </th>
-                <th data-column="firstName" data-order="desc">Имя</th>
-                <th data-column="lastName" data-order="desc">Фамилия</th>
-                <th data-column="about" data-order="desc">Описание</th>
-                <th data-column="eyeColor" data-order="desc">Цвет глаз</th>
+                <th id="fname-head" data-column="name firstName" data-order="desc"><button class="toggle">Скрыть</button>Имя</th>
+                <th id="lname-head" data-column="name lastName" data-order="desc"><button class="toggle">Скрыть</button>Фамилия</th>
+                <th id="about-head" data-column="about" data-order="desc"><button class="toggle">Скрыть</button>Описание</th>
+                <th id="color-head" data-column="eyeColor" data-order="desc"><button class="toggle">Скрыть</button>Цвет глаз</th>
             </tr>
           </thead>
           <tbody class="table-body">
