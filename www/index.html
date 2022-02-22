@@ -11,33 +11,45 @@
     <script src="scripts/script.js" defer></script>
 </head>
 <body>
-    <div class="table-container">
-      
-        <table>
-          <thead class="table-header">
-            <tr>
-                <th id="fname-head" data-column="name firstName" data-order="desc"><button class="toggle">Скрыть</button>Имя</th>
-                <th id="lname-head" data-column="name lastName" data-order="desc"><button class="toggle">Скрыть</button>Фамилия</th>
-                <th id="about-head" data-column="about" data-order="desc"><button class="toggle">Скрыть</button>Описание</th>
-                <th id="color-head" data-column="eyeColor" data-order="desc"><button class="toggle">Скрыть</button>Цвет глаз</th>
-            </tr>
-          </thead>
-          <tbody class="table-body">
+  <div class="table-checkbox-container">
+    <h2 class="checkbox-title">Показать или скрыть колонку</h2>
+    <div class="checkbox-container">
+      <input type="checkbox" id="fname-checkbox" class="table-checkbox">
+      <label for="fname-checkbox" class="checkbox-label">Имя</label>
+      <input type="checkbox" id="lname-checkbox" class="table-checkbox">
+      <label for="lname-checkbox" class="checkbox-label">Фамилия</label>
+      <input type="checkbox" id="about-checkbox" class="table-checkbox">
+      <label for="about-checkbox" class="checkbox-label">Описание</label>
+      <input type="checkbox" id="color-checkbox" class="table-checkbox">
+      <label for="color-checkbox" class="checkbox-label">Цвет глаз</label>
+    </div>
+  </div>
+  <div class="table-container">
 
-          </tbody>
-        </table>
+    <table>
+      <thead class="table-header">
+        <tr>
+          <th data-column="name firstName" data-order="desc" id="fname-checkbox">Имя</th>
+          <th data-column="name lastName" data-order="desc" id="lname-checkbox">Фамилия</th>
+          <th data-column="about" data-order="desc" id="about-checkbox">Описание</th>
+          <th data-column="eyeColor" data-order="desc" id="color-checkbox">Цвет глаз</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+      </tbody>
+     </table>
 
-        <div class="modal-edit-table">
-          <button class="close">×</button>
-          <h1 class="modal-title">Форма редактирования данных</h1>
-          <div class="input-container">
-            <span class="input-title"> Имя:<input type="text" name="fname" id="fname" class="modal-input"> </span>
-            <span class="input-title"> Фамилия:<input type="text" name="lname" id="lname" class="modal-input"> </span>
-            <span class="input-title"> Описание:<input type="text" name="about" id="about" class="modal-input"> </span>
-            <span class="input-title"> Цвет глаз:<input type="text" name="color" id="color" class="modal-input"> </span>
-            <button class="modal-btn">Редактировать</button>
-          </div>
-        </div>
+    <div class="modal-edit-table">
+      <button class="close">×</button>
+      <h2 class="modal-title">Форма редактирования данных</h2>
+      <div class="input-container">
+        <span class="input-title"> Имя:<input type="text" name="fname" id="fname" class="modal-input"> </span>
+        <span class="input-title"> Фамилия:<input type="text" name="lname" id="lname" class="modal-input"> </span>
+        <span class="input-title"> Описание:<input type="text" name="about" id="about" class="modal-input"> </span>
+        <span class="input-title"> Цвет глаз:<input type="text" name="color" id="color" class="modal-input"> </span>
+        <button class="modal-btn">Редактировать</button>
+      </div>
+    </div>
 
     </div>
 
