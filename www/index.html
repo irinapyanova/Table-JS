@@ -16,23 +16,42 @@
     <div class="checkbox-container">
       <input type="checkbox" id="fname-checkbox" class="table-checkbox">
       <label for="fname-checkbox" class="checkbox-label">Имя</label>
+
       <input type="checkbox" id="lname-checkbox" class="table-checkbox">
       <label for="lname-checkbox" class="checkbox-label">Фамилия</label>
+
       <input type="checkbox" id="about-checkbox" class="table-checkbox">
       <label for="about-checkbox" class="checkbox-label">Описание</label>
+
       <input type="checkbox" id="color-checkbox" class="table-checkbox">
       <label for="color-checkbox" class="checkbox-label">Цвет глаз</label>
     </div>
   </div>
+
   <div class="table-container">
 
     <table>
       <thead class="table-header">
         <tr>
-          <th data-column="name firstName" data-order="desc" id="fname-checkbox">Имя</th>
-          <th data-column="name lastName" data-order="desc" id="lname-checkbox">Фамилия</th>
-          <th data-column="about" data-order="desc" id="about-checkbox">Описание</th>
-          <th data-column="eyeColor" data-order="desc" id="color-checkbox">Цвет глаз</th>
+          <th data-column="name firstName" data-order="desc" id="fname-checkbox">
+            <span class="icon-sort"></span>
+            Имя
+          </th>
+
+          <th data-column="name lastName" data-order="desc" id="lname-checkbox">
+            <span class="icon-sort"></span>
+            Фамилия
+          </th>
+
+          <th data-column="about" data-order="desc" id="about-checkbox">
+            <span class="icon-sort"></span>
+            Описание
+          </th>
+
+          <th data-column="eyeColor" data-order="desc" id="color-checkbox">
+            <span class="icon-sort"></span>
+            Цвет глаз
+          </th>
         </tr>
       </thead>
       <tbody class="table-body">
@@ -51,7 +70,10 @@
       </div>
     </div>
 
-    </div>
+</div>
+<div class="pagination-container">
+  <div class="pagination-wrapper"></div>
+</div>
 
 </body>
 </html>
