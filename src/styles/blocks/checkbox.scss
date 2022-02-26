@@ -6,9 +6,9 @@
 }
 
 .checkbox-title {
-  margin-bottom: 10px;
-  font-size: 25px;
+  margin-bottom: 15px;
   color: #039;
+  font-size: 25px;
 }
 
 .table-checkbox {
@@ -26,6 +26,7 @@
 .checkbox-label {
   margin-right: 15px;
   color: #669;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -36,4 +37,5 @@
     border: 1px solid #039;
     border-radius: 3px;
   }
+
 }

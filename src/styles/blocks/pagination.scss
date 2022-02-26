@@ -1,0 +1,25 @@
+.pagination-container {
+  width: 50%;
+  margin: 0 40px 20px 40px;
+  text-align: center;
+}
+
+.btn-page {
+  margin-right: 15px;
+  padding: 10px;
+  color: #039;
+  font-size: 18px;
+  background-color: #fff;
+  border: 1px solid #039;
+  border-radius: 5px;
+  box-shadow: 3px 3px rgba(#039, 0.4);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(#6cf, 0.3);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
