@@ -1,85 +1,71 @@
 // Формирование данных таблицы
-let dataJson;
+let state;
+let data;
 
 async function getData() {
   const response = await fetch('json/db.json');
-  dataJson = await response.json();
-  return dataJson;
+  const dataJson = await response.json();
+  
+  state = {
+    'dataSet': dataJson,
+    'page': 1,
+    'rows': 10
+  }
+
+  data = pagination(state.dataSet, state.page, state.rows);
+
+  renderItems(data.dataSet);
+  pageButtons(data.pages);
+  sortData(state);
+  return state;
 }
 
 getData().catch(error => console.log(error));
-window.addEventListener('click', () => {
-
-  console.log(dataJson);
-})
-
-// function returnData () {
-//   return fetch('json/db.json')
-//   .then(response => response.json())
-//   .then(res => {
-//     const state = {
-//     'dataSet': res,
-//     'page': 1,
-//     'rows': 10
-//     }
-
-//     data = pagination(state.dataSet, state.page, state.rows);
-    
-//     renderItems(data.dataSet);
-//     sortData(data.dataSet);
-//     pageButtons(data, state);
-//   })
-//   .catch(error => console.log(error));
-// }
-
-// returnData();
 
 const tableBody = document.querySelector('.table-body');
 const tableTh = document.querySelectorAll('th');
 let rowId;
 
 const checkbox = document.querySelectorAll('.table-checkbox');
-
-let column;
-let order;
 const sortBtn = document.querySelectorAll('.icon-sort');
 
-function sortData(res) {
+function sortData(state) {
+  data = pagination(state.dataSet, state.page, state.rows);
 
   sortBtn.forEach(item => {
     item.addEventListener('click', (e) => {
       const target = e.target.parentElement;
-      column = target.getAttribute('data-column');
+      let column = target.getAttribute('data-column');
       column = column.split(' ');
       let len = column.length;
-      order = target.getAttribute('data-order')  == 'asc' ? 'desc' : 'asc';
-      
+      let order = target.getAttribute('data-order') == 'asc' ? 'desc' : 'asc';
+
       target.setAttribute('data-order', order);
-      console.log(order);
-      res = res.sort((a, b) => {
+      
+      let newRes = data.dataSet.sort((a, b) => {
         let i = 0;
 
         while (i < len) {a = a[column[i]]; b = b[column[i]]; i++;}
+
         if (a < b) {
           return order == 'asc' ? 1 : -1;
         } else if (a > b) {
-          return order == 'asc' ? -1 : 0;
+          return order == 'asc' ? -1 : 1;
         } else {
           return 0;
         }
       })
-
-      renderItems(res);
+      
+      renderItems(newRes);
     })
     
   })
-
+  
 }
-
 
 const renderItems = (res) => {
   tableBody.innerHTML = '';
-  
+
   res.forEach(item => {
     
     const {about, eyeColor, name} = item;
@@ -90,7 +76,7 @@ const renderItems = (res) => {
       <td id="fname-checkbox" >${name.firstName}</td>
       <td id="lname-checkbox" >${name.lastName}</td>
       <td id="about-checkbox" class="about">${about}</td>
-      <td id="color-checkbox"  class="color" style="color: ${eyeColor}">${eyeColor}</td>
+      <td id="color-checkbox" class="color" style="color: ${eyeColor}">${eyeColor}</td>
     `;
 
     tableBody.append(tr);
@@ -127,11 +113,11 @@ function pagination (dataSet, page, rows) {
   }
 }
 
-function pageButtons(data, state) {
+function pageButtons(pages) {
   const pagWrapper = document.querySelector('.pagination-wrapper');
   pagWrapper.innerHTML = '';
 
-  for(let page = 1; page <= data.pages; page++) {
+  for(let page = 1; page <= pages; page++) {
     pagWrapper.innerHTML += `<button value=${page} class="btn-page">${page}</button>`;
   }
 
@@ -145,13 +131,11 @@ function pageButtons(data, state) {
       hideModal();
       checkbox.forEach(item => item.checked = false);
       tableTh.forEach(th => th.classList.remove('hide'));
-
       renderItems(data.dataSet);
-      // sortData(data.dataSet);
     })
     
   })
-  
+
 }
 
 // Модальное окно 
