@@ -1,12 +1,9 @@
-// Получение данных JSON
-
 let data;
 
 async function getData() {
   const response = await fetch('json/db.json');
   const dataJson = await response.json();
   
-  // Переменная для хранения данных для постраничного выводa (page - первоначальная страница, rows - количество выводимых строк таблицы)
   let state = {
     'dataSet': dataJson,
     'page': 1,
@@ -28,11 +25,6 @@ getData().catch(error => console.log(error));
 const tableBody = document.querySelector('.table-body');
 const tableTh = document.querySelectorAll('th');
 let rowId;
-
-/* Функция перебирает объкет данных, приходящий из fetch, для каждого item'а объекта создает элемент tr, 
-    внутрь которого помещает html с ячейками таблицы, сформированный динамически, затем добавляет эти структуры в конец тега <tbody>.
-    Также здесь вызывается функция formModalInputData, так как она работает с tr, который формируется динамически в renderItems
-*/
 
 const renderItems = (res) => {
   tableBody.innerHTML = '';
@@ -59,11 +51,6 @@ const renderItems = (res) => {
 
 // Формирование данных импутов редактирования при нажатии на строку таблицы
 
-/* Функция при нажатии на ячейку таблицы получает индекс строки, в которой находится ячейка (нужен в функции editRow), 
-  а также формирует массив из текстового контента, находящегося внутри этих ячеек, затем находит каждый input по определенному id и 
-  записывает в их значение соответствующий ему текстовый контент ячейки таблицы, затем открывается модальное окно редактирования данных таблицы
-*/
-
 function formModalInputData(row) {
       
   row.addEventListener('click', (e) => {
@@ -85,12 +72,6 @@ function formModalInputData(row) {
 const table = document.querySelector('table');
 const modalBtn = document.querySelector('.modal-btn');
 
-/* Функция по индексу нажатой в formModalInputData строки записывает в ячейки этой строки новые ("отредактированные") 
-    значения соответствующих им по id imput'ов, также проводится проверка длины значения imput'а с id about 
-    и добавление к концу строки троеточия для корректного отображения в таблице.
-  Функция вызывается при нажатии на кнопку в модальном окне редактирования таблицы
-*/
-
 function editRow(){
   
   table.rows[rowId].cells[0].textContent = document.getElementById("fname").value;
@@ -110,14 +91,6 @@ modalBtn.addEventListener('click', editRow);
 // Сортировка данных колонки таблицы
 
 const sortBtn = document.querySelectorAll('.icon-sort');
-
-/* Функция при нажатии на иконку сортировки получает из <thead> два атрибута и записывает их в переменные column и order:
-    column - параметр, внутри которого данные подлежат сортировке, order - направление сотрировки (здесь же меняет его на противоположное значение 
-    и новое значение записывает в атрибут).
-    Затем происходит сортировка данных: в цикле while, при наличии вложенности объектов, достаем подлежащий сортировке объект
-    (в нашем случае только объект name имеет подобъекты - firstName и lastName), затем происходит непосредственно сортировка - 
-    сравнение значений в данном массиве между собой 
-*/
 
 function sortData(state) {
   data = pagination(state.dataSet, state.page, state.rows);
@@ -155,10 +128,6 @@ function sortData(state) {
 
 const checkbox = document.querySelectorAll('.table-checkbox');
 
-/* Функция при клике на чекбокс получает значение id кликнутого чекбокса и путем конкатенации преображает id в селектор, 
-по котому мы находим все ячейки с данным id, затем проверяет состояние чекбокса - если checked, то скрывает все ячейки, наоборот - показвыает
-*/
-
 function hideColumn() {
   checkbox.forEach(item => {
     item.addEventListener('change', () => {
@@ -191,13 +160,6 @@ closeBtn.addEventListener('click', hideModal);
 
 // Формирование данных для постраничного вывода таблицы
 
-/* Функция на основе переданных в нее аргументов из переменной state, 
-  полученной в fetch(в данном случае - JSON-файл, page = 1 и rows = 10), обрезает JSON-файл в 
-  зависимости от количества выводимых строк и номера первоначальной страницы 
-  (при первоночальном вызове в fetch - обрезает все, кроме первых десяти подобъектов JSON).
-  Также формирует общее количество страниц, затем возвращает эти данные (в данном случае в переменную data при вызове функции)
-*/
-
 function pagination (dataSet, page, rows) {
   let trimStart = (page - 1) * rows;
   let trimEnd = trimStart + rows;
@@ -212,11 +174,6 @@ function pagination (dataSet, page, rows) {
 }
 
 // Формирование кнопок для переключения постраничного переключения
-
-/* Функция динамически формирует html кнопок для постраничного вывода данных в зависимости от количества страниц, сформированых в функции pagination,
-  затем при нажатии на любую из этих кнопок выполняется функция pagination для формирования нового массива данных для отображения(dataSet) 
-  в зависимости от номера кликнутой кнопки, после этого заново динамически формируется таблица с новыми данными(renderData)
-*/
 
 function pageButtons(pages, state) {
   const pagWrapper = document.querySelector('.pagination-wrapper');
